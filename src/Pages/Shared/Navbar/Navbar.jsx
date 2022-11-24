@@ -11,7 +11,7 @@ const Navbar = () => {
         <Link to="/blogs">Blogs</Link>
       </li>
       <li>
-        <Link to="/signin">SignIn</Link>
+        <Link to="/signin">Sign In</Link>
       </li>
     </React.Fragment>
   );
