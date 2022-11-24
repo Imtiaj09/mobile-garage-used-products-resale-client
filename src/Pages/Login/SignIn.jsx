@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 
 const SignIn = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
 
   const handleSignUp = (data) => {
     console.log(data);
+    console.log(errors);
   };
 
   return (
@@ -22,10 +27,13 @@ const SignIn = () => {
             </label>
             <input
               type="text"
-              {...register("email")}
+              {...register("email", { required: "Email Address is required" })}
               className="input input-bordered w-full max-w-xs"
               placeholder="Enter your email"
             />
+            {errors.email && (
+              <p className="text-red-500">{errors.email?.message}</p>
+            )}
           </div>
           <div className="form-control w-full max-w-xs">
             <label className="label">
@@ -33,13 +41,22 @@ const SignIn = () => {
             </label>
             <input
               type="password"
-              {...register("password")}
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "Password must be 6 character or longer.",
+                },
+              })}
               className="input input-bordered w-full max-w-xs"
               placeholder="******"
             />
             <label className="label mb-2">
               <span className="label-text">Forget Password?</span>
             </label>
+            {errors.password && (
+              <p className="text-red-500">{errors.password?.message}</p>
+            )}
           </div>
           <input
             className="btn btn-accent w-full"
