@@ -10,6 +10,9 @@ const Navbar = () => {
       <li>
         <Link to="/blogs">Blogs</Link>
       </li>
+      <li>
+        <Link to="/signin">SignIn</Link>
+      </li>
     </React.Fragment>
   );
 
