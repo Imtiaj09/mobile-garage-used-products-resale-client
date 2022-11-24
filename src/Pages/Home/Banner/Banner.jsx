@@ -1,5 +1,6 @@
 import React from "react";
 import banner from "../../../assets/images/banner1.jpg";
+import PrimaryButton from "../../../components/PrimaryButton/PrimaryButton";
 
 const Banner = () => {
   return (
@@ -16,9 +17,7 @@ const Banner = () => {
             convergence, but mobile is also the digital gateway for the real
             world to join in this global metamorphosis of human behavior.
           </p>
-          <button className="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white">
-            Get stated
-          </button>
+          <PrimaryButton>Get stated</PrimaryButton>
         </div>
       </div>
     </div>
