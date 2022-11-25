@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
 import { AuthContext } from "../../context/AuthProvider";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const SignIn = () => {
   const {
@@ -91,10 +91,11 @@ const SignIn = () => {
           </Link>
         </p>
         <div className="divider">OR</div>
-        <button className="btn btn-outline w-full btn-primary text-black font-bold">
+        {/* <button className="btn btn-outline w-full btn-primary text-black font-bold">
           <FcGoogle className="w-6 h-6 mr-1" />
           <span>Login with Google</span>
-        </button>
+        </button> */}
+        <SocialLogin />
       </div>
     </div>
   );
