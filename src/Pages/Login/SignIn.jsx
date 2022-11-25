@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { AuthContext } from "../../context/AuthProvider";
 
 const SignIn = () => {
   const {
@@ -9,10 +10,21 @@ const SignIn = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
+  const { signIn } = useContext(AuthContext);
+  const [signInError, setSignInError] = useState("");
 
   const handleSignIn = (data) => {
     console.log(data);
-    console.log(errors);
+    setSignInError("");
+    signIn(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+        setSignInError(error.message);
+      });
   };
 
   return (
@@ -63,6 +75,9 @@ const SignIn = () => {
             value="Sign In"
             type="submit"
           />
+          <div>
+            {signInError && <p className="text-red-500">{signInError}</p>}
+          </div>
         </form>
         <p className="flex justify-center mt-2 gap-2">
           New to Mobile Garage?{" "}
