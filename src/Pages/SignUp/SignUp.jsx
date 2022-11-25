@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../context/AuthProvider";
 
 const SignUp = () => {
@@ -10,15 +11,23 @@ const SignUp = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-
   const { createUser, updateUser } = useContext(AuthContext);
+  const [signUpError, setSignUpError] = useState("");
 
   const handleSignUp = (data) => {
     console.log(data);
+    setSignUpError("");
     createUser(data.email, data.password)
       .then((result) => {
         const user = result.user;
         console.log(user);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "User Account Created Successfully.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         const userInfo = {
           displayName: data.name,
         };
@@ -26,7 +35,10 @@ const SignUp = () => {
           .then(() => {})
           .catch((err) => console.log(err));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setSignUpError(err.message);
+      });
   };
 
   return (
@@ -103,6 +115,7 @@ const SignUp = () => {
             value="Sign Up"
             type="submit"
           />
+          {signUpError && <p className="text-red-500">{signUpError}</p>}
         </form>
         <p className="flex justify-center mt-2 gap-2">
           Already have an account?{" "}
