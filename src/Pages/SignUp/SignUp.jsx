@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { AuthContext } from "../../context/AuthProvider";
 
 const SignUp = () => {
   const {
@@ -10,10 +11,18 @@ const SignUp = () => {
     handleSubmit,
   } = useForm();
 
+  const { createUser } = useContext(AuthContext);
+
   const handleSignUp = (data) => {
     console.log(data);
-    console.log(errors);
+    createUser(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((err) => console.error(err));
   };
+
   return (
     <div className="h-[800px] flex justify-center items-center">
       <div className="w-96 p-7 shadow-2xl bg-base-100 rounded-lg">
@@ -85,7 +94,7 @@ const SignUp = () => {
           </div>
           <input
             className="btn btn-accent w-full mt-6"
-            value="Sign In"
+            value="Sign Up"
             type="submit"
           />
         </form>
