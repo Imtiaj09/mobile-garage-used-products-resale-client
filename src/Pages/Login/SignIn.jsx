@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../context/AuthProvider";
+import useToken from "../../hooks/useToken";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const SignIn = () => {
@@ -13,10 +14,16 @@ const SignIn = () => {
   } = useForm();
   const { signIn } = useContext(AuthContext);
   const [signInError, setSignInError] = useState("");
+  const [signUpUserEmail, setSignUpUserEmail] = useState("");
+  const [token] = useToken(signUpUserEmail);
   const location = useLocation();
   const navigate = useNavigate();
 
   const from = location.state?.from?.pathname || "/";
+
+  if (token) {
+    navigate(from, { replace: true });
+  }
 
   const handleSignIn = (data) => {
     console.log(data);
@@ -24,7 +31,7 @@ const SignIn = () => {
     signIn(data.email, data.password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        setSignUpUserEmail(data.email);
         Swal.fire({
           position: "center",
           icon: "success",
@@ -32,7 +39,6 @@ const SignIn = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error.message);
