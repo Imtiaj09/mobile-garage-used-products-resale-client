@@ -5,7 +5,7 @@ import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import Home from "../../Pages/Home/Home/Home";
 import SignIn from "../../Pages/Login/SignIn";
-import Products from "../../Pages/Products/Products";
+import Products from "../../Pages/AllProducts/Products/Products";
 import SignUp from "../../Pages/SignUp/SignUp";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 

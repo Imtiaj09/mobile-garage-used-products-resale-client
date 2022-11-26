@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
-import ProductDetailsCard from "../ProductDetailsCard/ProductDetailsCard";
+import ProductDetailsCard from "../../ProductDetailsCard/ProductDetailsCard";
+import BookingModal from "../BookingModal/BookingModal";
 
 const Products = () => {
   const productsCategory = useLoaderData();
+  const [buyProduct, setBuyProduct] = useState(null);
+
   return (
-    <div>
+    <section className="my-8">
       <h2 className="text-3xl font-semibold">
         This section has {productsCategory.length} products
       </h2>
@@ -14,10 +17,14 @@ const Products = () => {
           <ProductDetailsCard
             key={product._id}
             product={product}
+            setBuyProduct={setBuyProduct}
           ></ProductDetailsCard>
         ))}
       </div>
-    </div>
+      {buyProduct && (
+        <BookingModal buyProduct={buyProduct} setBuyProduct={setBuyProduct} />
+      )}
+    </section>
   );
 };
 
