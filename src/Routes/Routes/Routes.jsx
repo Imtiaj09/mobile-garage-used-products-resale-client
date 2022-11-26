@@ -2,12 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import Main from "../../Layout/Main";
 import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
-import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import Home from "../../Pages/Home/Home/Home";
 import SignIn from "../../Pages/Login/SignIn";
 import Products from "../../Pages/AllProducts/Products/Products";
 import SignUp from "../../Pages/SignUp/SignUp";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 
 const router = createBrowserRouter([
   {
@@ -44,7 +44,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: <MyOrders />,
       },
       {
         path: "/dashboard/allusers",
