@@ -12,6 +12,7 @@ const BookingModal = ({ buyProduct, setBuyProduct }) => {
     const name = from.name.value;
     const email = from.email.value;
     const phone = from.phone.value;
+    const location = from.location.value;
 
     const booking = {
       sellingPrice: selling_price,
@@ -19,6 +20,7 @@ const BookingModal = ({ buyProduct, setBuyProduct }) => {
       name,
       email,
       phone,
+      location,
     };
     fetch("http://localhost:5000/bookings", {
       method: "POST",
@@ -117,6 +119,17 @@ const BookingModal = ({ buyProduct, setBuyProduct }) => {
                 name="phone"
                 type="text"
                 placeholder="Your Phone Number"
+                className="input input-bordered w-full"
+              />
+            </div>
+            <div className="form-control w-full">
+              <label className="label">
+                <span className="label-text">Meeting Location</span>
+              </label>
+              <input
+                name="location"
+                type="text"
+                placeholder="Meeting Location"
                 className="input input-bordered w-full"
               />
             </div>
