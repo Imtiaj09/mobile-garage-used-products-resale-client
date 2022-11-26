@@ -13,8 +13,6 @@ const ProductDetailsCard = ({ product, setBuyProduct }) => {
     is_Verified,
   } = product;
 
-  console.log(product);
-
   return (
     <div className="max-w-lg p-4 shadow-md ">
       <div className="flex justify-between pb-4 border-bottom">

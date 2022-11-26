@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../../../context/AuthProvider";
+import Swal from "sweetalert2";
 
 const BookingModal = ({ buyProduct, setBuyProduct }) => {
   const { product_name, buying_price, selling_price } = buyProduct;
+  const { user } = useContext(AuthContext);
 
   const handleBooking = (event) => {
     event.preventDefault();
@@ -17,8 +20,27 @@ const BookingModal = ({ buyProduct, setBuyProduct }) => {
       email,
       phone,
     };
-    console.log(booking);
-    setBuyProduct(null);
+    fetch("http://localhost:5000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          setBuyProduct(null);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Booking Confirmed",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
   };
 
   return (
@@ -68,6 +90,8 @@ const BookingModal = ({ buyProduct, setBuyProduct }) => {
               <input
                 name="name"
                 type="text"
+                defaultValue={user?.displayName}
+                disabled
                 placeholder="Your Name"
                 className="input input-bordered w-full"
               />
@@ -79,6 +103,8 @@ const BookingModal = ({ buyProduct, setBuyProduct }) => {
               <input
                 name="email"
                 type="email"
+                defaultValue={user?.email}
+                disabled
                 placeholder="Your Email Address"
                 className="input input-bordered w-full"
               />
