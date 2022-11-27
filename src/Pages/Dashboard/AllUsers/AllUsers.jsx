@@ -1,8 +1,9 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const AllUsers = () => {
-  const { data: users = [] } = useQuery({
+  const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await fetch("http://localhost:5000/users");
@@ -10,6 +11,26 @@ const AllUsers = () => {
       return data;
     },
   });
+
+  const handleMakeAdmin = (id) => {
+    fetch(`http://localhost:5000/users/admin/${id}`, {
+      method: "PUT",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Make admin successful.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          refetch();
+        }
+      });
+  };
 
   return (
     <div>
@@ -32,7 +53,14 @@ const AllUsers = () => {
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>
-                  <button className="btn btn-xs btn-primary">Make Admin</button>
+                  {user?.role !== "admin" && (
+                    <button
+                      onClick={() => handleMakeAdmin(user._id)}
+                      className="btn btn-xs btn-primary"
+                    >
+                      Make Admin
+                    </button>
+                  )}
                 </td>
                 <td>
                   <button className="btn btn-xs btn-secondary">Delete</button>

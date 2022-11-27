@@ -22,6 +22,19 @@ const AddAProduct = () => {
       .then((imgData) => {
         if (imgData.success) {
           console.log(imgData.data.url);
+          const product = {
+            name: data.name,
+            email: data.name,
+            published_date: data.publishdate,
+            categories_id: data.category,
+            product_name: data.productname,
+            details: data.details,
+            selling_price: data.sellingprice,
+            buying_price: data.buyingprice,
+            duration_use: data.durationuse,
+            location: data.location,
+            image_url: imgData.data.url,
+          };
         }
       });
   };
@@ -116,6 +129,22 @@ const AddAProduct = () => {
           />
           {errors.buyingprice && (
             <p className="text-red-500">{errors.buyingprice?.message}</p>
+          )}
+        </div>
+        <div className="form-control w-full max-w-lg">
+          <label className="label">
+            <span className="label-text">Selling Price</span>
+          </label>
+          <input
+            type="text"
+            {...register("sellingprice", {
+              required: "Selling Price is required",
+            })}
+            className="input input-bordered max-w-lg"
+            placeholder="Selling Price"
+          />
+          {errors.sellingprice && (
+            <p className="text-red-500">{errors.sellingprice?.message}</p>
           )}
         </div>
         <div className="form-control w-full max-w-lg">
