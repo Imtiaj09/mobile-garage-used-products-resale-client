@@ -51,8 +51,8 @@ const SignUp = () => {
       });
   };
 
-  const saveUser = (name, email) => {
-    const user = { name, email };
+  const saveUser = (name, email, category) => {
+    const user = { name, email, role: category };
     fetch("http://localhost:5000/users", {
       method: "POST",
       headers: {
@@ -64,6 +64,7 @@ const SignUp = () => {
       .then((data) => {
         setCreatedUserEmail(email);
       });
+    console.log(user);
   };
 
   return (

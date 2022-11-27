@@ -31,7 +31,12 @@ const AllUsers = () => {
                 <th>{i + 1}</th>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
-                <td>Blue</td>
+                <td>
+                  <button className="btn btn-xs btn-primary">Make Admin</button>
+                </td>
+                <td>
+                  <button className="btn btn-xs btn-secondary">Delete</button>
+                </td>
               </tr>
             ))}
           </tbody>
