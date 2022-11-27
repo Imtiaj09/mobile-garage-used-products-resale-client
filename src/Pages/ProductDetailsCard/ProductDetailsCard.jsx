@@ -31,7 +31,9 @@ const ProductDetailsCard = ({ product, setBuyProduct }) => {
             className="block object-cover object-center w-full rounded-md h-72 dark:bg-gray-500"
           />
           <div className="flex items-center text-xs">
-            <span>{author?.published_date} ago</span>
+            <span>
+              {author?.published_date.date} {author?.published_date.time} ago
+            </span>
           </div>
           <div>
             <p className="text-xl font-bold">{product_name}</p>

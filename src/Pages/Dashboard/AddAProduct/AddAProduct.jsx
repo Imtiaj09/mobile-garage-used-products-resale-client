@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../../context/AuthProvider";
 
 const AddAProduct = () => {
   const {
@@ -8,11 +9,17 @@ const AddAProduct = () => {
     handleSubmit,
   } = useForm();
   const imgHostKey = process.env.REACT_APP_imgbb_key;
+  const { user } = useContext(AuthContext);
+
+  const currentDate = new Date();
+  const date = currentDate.toDateString();
+  const time = currentDate.toLocaleTimeString();
 
   const handleAddAProduct = (data) => {
     const image = data.image[0];
     const formData = new FormData();
     formData.append("image", image);
+
     const url = `https://api.imgbb.com/1/upload?key=${imgHostKey}`;
     fetch(url, {
       method: "POST",
@@ -23,18 +30,34 @@ const AddAProduct = () => {
         if (imgData.success) {
           console.log(imgData.data.url);
           const product = {
-            name: data.name,
-            email: data.name,
-            published_date: data.publishdate,
             categories_id: data.category,
             product_name: data.productname,
+            author: {
+              name: data.name,
+              email: data.name,
+            },
+            published_date: { date, time },
+            image_url: imgData.data.url,
             details: data.details,
             selling_price: data.sellingprice,
             buying_price: data.buyingprice,
             duration_use: data.durationuse,
             location: data.location,
-            image_url: imgData.data.url,
           };
+          console.log(product);
+          //save Add products to the products collection
+          fetch("http://localhost:5000/categories", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+              authorization: `bearer ${localStorage.getItem("accessToken")}`,
+            },
+            body: JSON.stringify(product),
+          })
+            .then((res) => res.json())
+            .then((result) => {
+              console.log(result);
+            });
         }
       });
   };
@@ -49,6 +72,8 @@ const AddAProduct = () => {
           </label>
           <input
             type="text"
+            defaultValue={user.displayName}
+            disabled
             {...register("name", {
               required: "Name is Required",
             })}
@@ -65,9 +90,9 @@ const AddAProduct = () => {
             className="select select-bordered w-full max-w-lg"
             {...register("category", { required: true })}
           >
-            <option value="user">iphone</option>
-            <option value="seller">pixel</option>
-            <option value="seller">samsung</option>
+            <option value="iphone">iphone</option>
+            <option value="pixel">pixel</option>
+            <option value="samsung">samsung</option>
           </select>
         </div>
         <div className="form-control w-full max-w-lg">
@@ -76,6 +101,8 @@ const AddAProduct = () => {
           </label>
           <input
             type="text"
+            defaultValue={user?.email}
+            disabled
             {...register("email", { required: "Email Address is required" })}
             className="input input-bordered w-full max-w-lg"
             placeholder="Enter your email"
@@ -195,7 +222,7 @@ const AddAProduct = () => {
             <p className="text-red-500">{errors.location?.message}</p>
           )}
         </div>
-        <div className="form-control w-full max-w-lg">
+        {/* <div className="form-control w-full max-w-lg">
           <label className="label">
             <span className="label-text">Date</span>
           </label>
@@ -207,7 +234,7 @@ const AddAProduct = () => {
             className="input input-bordered max-w-lg"
             placeholder="Publish Date"
           />
-        </div>
+        </div> */}
         <input
           className="btn btn-accent w-full max-w-lg mt-6"
           value="Sign Up"
