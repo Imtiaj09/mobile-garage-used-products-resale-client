@@ -44,7 +44,6 @@ const AddAProduct = () => {
             duration_use: data.durationuse,
             location: data.location,
           };
-          console.log(product);
           //save Add products to the products collection
           fetch("http://localhost:5000/categories", {
             method: "POST",
