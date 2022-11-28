@@ -15,6 +15,7 @@ import Buyers from "../../Pages/Dashboard/Buyers/Buyers";
 import MyWishlist from "../../Pages/Dashboard/MyWishlist/MyWishlist";
 import MyProduct from "../../Pages/Dashboard/MyProduct/MyProduct";
 import Blogs from "../../Pages/Shared/Blogs/Blogs";
+import SellerRoute from "../SellerRoute/SellerRoute";
 
 const router = createBrowserRouter([
   {
@@ -67,11 +68,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/addproduct",
-        element: <AddAProduct />,
+        element: (
+          <SellerRoute>
+            <AddAProduct />
+          </SellerRoute>
+        ),
       },
       {
         path: "/dashboard/sellers",
-        element: <Sellers />,
+        element: (
+          <AdminRoute>
+            <Sellers />
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/buyers",
@@ -79,7 +88,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/myproduct",
-        element: <MyProduct />,
+        element: (
+          <SellerRoute>
+            <MyProduct />
+          </SellerRoute>
+        ),
       },
       {
         path: "/dashboard/wishlist",
