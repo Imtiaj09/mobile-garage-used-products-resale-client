@@ -11,10 +11,9 @@ const Sellers = () => {
       return data;
     },
   });
-  console.log(users);
   return (
     <div>
-      <h2 className="text-3xl font-semibold">Seller</h2>
+      <h2 className="text-3xl font-semibold">Sellers</h2>
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>

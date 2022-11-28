@@ -93,7 +93,7 @@ const SignUp = () => {
             className="select select-bordered w-full max-w-xs mt-4"
             {...register("category", { required: true })}
           >
-            <option value="user">User</option>
+            <option value="buyers">Buyers</option>
             <option value="seller">Seller</option>
           </select>
           <div className="form-control w-full max-w-xs">
