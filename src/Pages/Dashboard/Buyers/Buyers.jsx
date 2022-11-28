@@ -14,7 +14,7 @@ const Buyers = () => {
   console.log(users);
   return (
     <div>
-      <h2 className="text-3xl font-semibold">Buyers</h2>
+      <h2 className="text-3xl font-semibold mb-4">All Buyers</h2>
       <div className="overflow-x-auto">
         <table className="table w-full">
           <thead>

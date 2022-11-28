@@ -19,6 +19,7 @@ const MyOrders = () => {
       return data;
     },
   });
+  console.log(bookings.image_url);
 
   return (
     <div>
@@ -28,15 +29,23 @@ const MyOrders = () => {
           <thead>
             <tr>
               <th></th>
+              <th></th>
               <th>Name</th>
               <th>Product</th>
               <th>Price</th>
             </tr>
           </thead>
           <tbody>
-            {bookings.map((booking, i) => (
+            {bookings?.map((booking, i) => (
               <tr key={booking._id}>
                 <th>{i + 1}</th>
+                <th>
+                  <div className="avatar">
+                    <div className="w-20 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                      <img src={booking.image_url} alt="" />
+                    </div>
+                  </div>
+                </th>
                 <td>{booking.name}</td>
                 <td>{booking.productName}</td>
                 <td>${booking.sellingPrice}</td>
