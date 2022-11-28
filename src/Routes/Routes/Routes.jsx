@@ -14,6 +14,7 @@ import Sellers from "../../Pages/Dashboard/Sellers/Sellers";
 import Buyers from "../../Pages/Dashboard/Buyers/Buyers";
 import MyWishlist from "../../Pages/Dashboard/MyWishlist/MyWishlist";
 import MyProduct from "../../Pages/Dashboard/MyProduct/MyProduct";
+import Blogs from "../../Pages/Shared/Blogs/Blogs";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
         element: <Products />,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/category/${params.id}`),
+      },
+      {
+        path: "/blogs",
+        element: <Blogs />,
       },
       {
         path: "/signin",
