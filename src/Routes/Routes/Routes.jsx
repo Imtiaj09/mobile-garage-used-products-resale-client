@@ -16,11 +16,14 @@ import MyWishlist from "../../Pages/Dashboard/MyWishlist/MyWishlist";
 import MyProduct from "../../Pages/Dashboard/MyProduct/MyProduct";
 import Blogs from "../../Pages/Shared/Blogs/Blogs";
 import SellerRoute from "../SellerRoute/SellerRoute";
+import Payment from "../../Pages/Dashboard/Payment/Payment";
+import DisplayError from "../../Pages/Shared/DisplayError/DisplayError";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement: <DisplayError />,
     children: [
       {
         path: "/",
@@ -53,6 +56,7 @@ const router = createBrowserRouter([
         <DashboardLayout />
       </PrivateRoute>
     ),
+    errorElement: <DisplayError />,
     children: [
       {
         path: "/dashboard",
@@ -93,6 +97,12 @@ const router = createBrowserRouter([
             <MyProduct />
           </SellerRoute>
         ),
+      },
+      {
+        path: "/dashboard/payment/:id",
+        element: <Payment />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/bookings/${params.id}`),
       },
       {
         path: "/dashboard/wishlist",

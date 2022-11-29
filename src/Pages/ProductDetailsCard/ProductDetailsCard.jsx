@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { FaCheckCircle } from "react-icons/fa";
 
 const ProductDetailsCard = ({ product, setBuyProduct }) => {
   const {
@@ -10,15 +11,26 @@ const ProductDetailsCard = ({ product, setBuyProduct }) => {
     buying_price,
     duration_use,
     location,
-    is_Verified,
+    published_date,
   } = product;
+  console.log(product);
+
+  const [isVerified, setIsVerified] = useState();
+  useEffect(() => {
+    fetch(`http://localhost:5000/users/isVerified?email=${author.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setIsVerified(data);
+      });
+  });
 
   return (
     <div className="max-w-lg p-4 shadow-md ">
       <div className="flex justify-between pb-4 border-bottom">
         <div className="flex items-center">
           <p className="mb-0 capitalize dark:text-black">
-            Name: {author?.name}
+            Name: {author?.name}{" "}
+            {isVerified && <FaCheckCircle className="text-blue-500 inline" />}
           </p>
         </div>
         <p>Email: {author?.email}</p>
@@ -32,7 +44,8 @@ const ProductDetailsCard = ({ product, setBuyProduct }) => {
           />
           <div className="flex items-center text-xs">
             <span>
-              {author?.published_date.date} {author?.published_date.time} ago
+              {published_date?.date || author?.published_date}{" "}
+              {published_date?.time} ago
             </span>
           </div>
           <div>

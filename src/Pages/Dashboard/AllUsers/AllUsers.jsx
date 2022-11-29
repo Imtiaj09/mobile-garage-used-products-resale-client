@@ -35,6 +35,37 @@ const AllUsers = () => {
       });
   };
 
+  // const handleDelete = (user) => {
+  //   const agree = window.confirm(
+  //     `Are you sure you want to delete the user ${user.name}.`
+  //   );
+  //   if (agree) {
+  //     // console.log("Deleteing user with id:", user._id);
+  //     fetch(`http://localhost:5000/users/${user._id}`, {
+  //       method: "DELETE",
+  //     })
+  //       .then((res) => res.json())
+  //       .then((data) => {
+  //         console.log(data);
+  //         if (data.deletedCount > 0) {
+  //           Swal.fire({
+  //             title: "User deleted successfully",
+  //             showClass: {
+  //               popup: "animate__animated animate__fadeInDown",
+  //             },
+  //             hideClass: {
+  //               popup: "animate__animated animate__fadeOutUp",
+  //             },
+  //           });
+  //           const remainingUsers = displayUser.filter(
+  //             (usr) => usr._id !== user._id
+  //           );
+  //           setDisplayUser(remainingUsers);
+  //         }
+  //       });
+  //   }
+  // };
+
   return (
     <div>
       <h2 className="text-3xl">All Users</h2>
@@ -66,7 +97,12 @@ const AllUsers = () => {
                   )}
                 </td>
                 <td>
-                  <button className="btn btn-xs btn-secondary">Delete</button>
+                  <button
+                    // onClick={() => handleDelete(user)}
+                    className="btn btn-xs btn-secondary"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
