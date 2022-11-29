@@ -1,5 +1,6 @@
 import React from "react";
 import Category from "../../Categories/Category/Category";
+import Advertisement from "../Advertisement/Advertisement/Advertisement";
 import Banner from "../Banner/Banner";
 
 const Home = () => {
@@ -7,6 +8,7 @@ const Home = () => {
     <div className="mx-5">
       <Banner />
       <Category />
+      <Advertisement />
     </div>
   );
 };
