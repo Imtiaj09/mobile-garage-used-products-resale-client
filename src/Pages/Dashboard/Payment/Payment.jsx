@@ -9,7 +9,9 @@ const Payment = () => {
       <h2 className="text-3xl font-semibold">
         Payment for {booking.productName}
       </h2>
-      <p className="text-xl">Please pay {booking.sellingPrice} for your P</p>
+      <p className="text-xl">
+        Please pay {booking.sellingPrice} for your purchase product.
+      </p>
     </div>
   );
 };

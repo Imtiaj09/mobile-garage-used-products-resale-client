@@ -1,4 +1,5 @@
 import React from "react";
+import Swal from "sweetalert2";
 
 const MyProductCard = ({ product }) => {
   const {
@@ -12,6 +13,28 @@ const MyProductCard = ({ product }) => {
     location,
     published_date,
   } = product;
+
+  const handleAdvertisement = (_id) => {
+    fetch(`http://localhost:5000/products/${product._id}`, {
+      method: "PUT",
+      headers: {
+        authorization: `bearer ${localStorage.getItem("accessToken")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Advertisement successfully added.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
+
   return (
     <div className="max-w-lg p-4 shadow-md ">
       <div className="flex justify-between pb-4 border-bottom">
@@ -51,6 +74,14 @@ const MyProductCard = ({ product }) => {
             {location}
           </p>
         </div>
+        {product?.advertise !== true && (
+          <button
+            onClick={() => handleAdvertisement(product._id)}
+            className="btn btn-xs btn-primary"
+          >
+            Advertisement
+          </button>
+        )}
       </div>
     </div>
   );
