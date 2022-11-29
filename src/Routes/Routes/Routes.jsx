@@ -13,7 +13,7 @@ import AdminRoute from "../AdminRoute/AdminRoute";
 import Sellers from "../../Pages/Dashboard/Sellers/Sellers";
 import Buyers from "../../Pages/Dashboard/Buyers/Buyers";
 import MyWishlist from "../../Pages/Dashboard/MyWishlist/MyWishlist";
-import MyProduct from "../../Pages/Dashboard/MyProduct/MyProduct";
+import MyProduct from "../../Pages/Dashboard/MyAddedProducts/MyProduct/MyProduct";
 import Blogs from "../../Pages/Shared/Blogs/Blogs";
 import SellerRoute from "../SellerRoute/SellerRoute";
 import Payment from "../../Pages/Dashboard/Payment/Payment";
