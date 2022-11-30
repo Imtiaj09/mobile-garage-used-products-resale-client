@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 
@@ -35,7 +35,7 @@ const AllUsers = () => {
       });
   };
 
-  const [displayUsers, setDisplayUsers] = useState(users);
+  // const [displayUsers, setDisplayUsers] = useState(users);
 
   const handleDelete = (user) => {
     const agree = window.confirm(
@@ -57,10 +57,7 @@ const AllUsers = () => {
                 popup: "animate__animated animate__fadeOutUp",
               },
             });
-            const remainingUsers = displayUsers.filter(
-              (usr) => usr._id !== user._id
-            );
-            setDisplayUsers(remainingUsers);
+            refetch();
           }
         });
     }
@@ -81,7 +78,7 @@ const AllUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {displayUsers?.map((user, i) => (
+            {users?.map((user, i) => (
               <tr key={user._id}>
                 <th>{i + 1}</th>
                 <td>{user.name}</td>

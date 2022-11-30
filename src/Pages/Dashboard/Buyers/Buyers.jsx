@@ -1,19 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 
 const Buyers = () => {
-  const { data: users = [] } = useQuery({
+  const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users");
+      const res = await fetch("http://localhost:5000/users?person=buyers");
       const buyers = await res.json();
-      const data = buyers.filter((buyer) => buyer.role === "buyers");
-      return data;
+      return buyers;
     },
   });
 
-  const [displayUsers, setDisplayUsers] = useState(users);
+  // const [displayUsers, setDisplayUsers] = useState(users);
 
   const handleDelete = (user) => {
     const agree = window.confirm(
@@ -35,10 +34,7 @@ const Buyers = () => {
                 popup: "animate__animated animate__fadeOutUp",
               },
             });
-            const remainingUsers = displayUsers.filter(
-              (usr) => usr._id !== user._id
-            );
-            setDisplayUsers(remainingUsers);
+            refetch();
           }
         });
     }
@@ -58,7 +54,7 @@ const Buyers = () => {
             </tr>
           </thead>
           <tbody>
-            {displayUsers?.map((user, i) => (
+            {users?.map((user, i) => (
               <tr key={user._id}>
                 <th>{i + 1}</th>
                 <td>{user.name}</td>
