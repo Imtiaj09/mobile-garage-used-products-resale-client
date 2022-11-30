@@ -64,7 +64,6 @@ const SignUp = () => {
       .then((data) => {
         setCreatedUserEmail(email);
       });
-    console.log(user);
   };
 
   return (

@@ -1,16 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import footer from "../../../assets/images/footer.jpeg";
 
 const Footer = () => {
   return (
-    <footer
-      // style={{
-      //   background: `url(${footer})`,
-      //   backgroundSize: "cover",
-      // }}
-      className="mt-8"
-    >
+    <footer className="mt-8">
       <div className="footer">
         <div>
           <span className="footer-title">Services</span>

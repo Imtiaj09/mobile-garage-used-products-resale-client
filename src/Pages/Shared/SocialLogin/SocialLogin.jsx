@@ -1,25 +1,50 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider";
+import useToken from "../../../hooks/useToken";
 
 const SocialLogin = () => {
   const { googleSignIn } = useContext(AuthContext);
   const location = useLocation();
+
+  const [createdUserEmail, setCreatedUserEmail] = useState("");
+  const [token] = useToken(createdUserEmail);
+  console.log("token is", token);
+
   const navigate = useNavigate();
 
   const form = location.state?.form?.pathname || "/";
+
+  if (token) {
+    navigate(form, { replace: true });
+  }
 
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
         const user = result.user;
-        console.log(user);
-        // const option = "buyers";
-        navigate(form, { replace: true });
+        saveUser(user.displayName, user.email, "buyers");
+        console.log(user.displayName, user.email);
       })
       .catch((err) => console.error(err));
   };
+
+  const saveUser = (name, email, category) => {
+    const user = { name, email, role: category };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setCreatedUserEmail(email);
+      });
+  };
+
   return (
     <div>
       <button
