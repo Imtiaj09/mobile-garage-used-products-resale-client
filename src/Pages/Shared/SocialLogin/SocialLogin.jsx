@@ -15,6 +15,7 @@ const SocialLogin = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        // const option = "buyers";
         navigate(form, { replace: true });
       })
       .catch((err) => console.error(err));

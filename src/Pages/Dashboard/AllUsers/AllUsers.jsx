@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
 
@@ -35,36 +35,36 @@ const AllUsers = () => {
       });
   };
 
-  // const handleDelete = (user) => {
-  //   const agree = window.confirm(
-  //     `Are you sure you want to delete the user ${user.name}.`
-  //   );
-  //   if (agree) {
-  //     // console.log("Deleteing user with id:", user._id);
-  //     fetch(`http://localhost:5000/users/${user._id}`, {
-  //       method: "DELETE",
-  //     })
-  //       .then((res) => res.json())
-  //       .then((data) => {
-  //         console.log(data);
-  //         if (data.deletedCount > 0) {
-  //           Swal.fire({
-  //             title: "User deleted successfully",
-  //             showClass: {
-  //               popup: "animate__animated animate__fadeInDown",
-  //             },
-  //             hideClass: {
-  //               popup: "animate__animated animate__fadeOutUp",
-  //             },
-  //           });
-  //           const remainingUsers = displayUser.filter(
-  //             (usr) => usr._id !== user._id
-  //           );
-  //           setDisplayUser(remainingUsers);
-  //         }
-  //       });
-  //   }
-  // };
+  const [displayUsers, setDisplayUsers] = useState(users);
+
+  const handleDelete = (user) => {
+    const agree = window.confirm(
+      `Are you sure you want to delete the user ${user.name}.`
+    );
+    if (agree) {
+      fetch(`http://localhost:5000/users/${user._id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            Swal.fire({
+              title: "User deleted successfully",
+              showClass: {
+                popup: "animate__animated animate__fadeInDown",
+              },
+              hideClass: {
+                popup: "animate__animated animate__fadeOutUp",
+              },
+            });
+            const remainingUsers = displayUsers.filter(
+              (usr) => usr._id !== user._id
+            );
+            setDisplayUsers(remainingUsers);
+          }
+        });
+    }
+  };
 
   return (
     <div>
@@ -81,7 +81,7 @@ const AllUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user, i) => (
+            {displayUsers?.map((user, i) => (
               <tr key={user._id}>
                 <th>{i + 1}</th>
                 <td>{user.name}</td>
@@ -98,7 +98,7 @@ const AllUsers = () => {
                 </td>
                 <td>
                   <button
-                    // onClick={() => handleDelete(user)}
+                    onClick={() => handleDelete(user)}
                     className="btn btn-xs btn-secondary"
                   >
                     Delete
