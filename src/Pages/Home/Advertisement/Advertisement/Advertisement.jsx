@@ -12,7 +12,7 @@ const Advertisement = () => {
   console.log(advertisement);
 
   return (
-    <div className="mt-8">
+    <div className="mt-10">
       <h4 className="text-center text-3xl font-semibold">
         Advertisement Section
       </h4>
