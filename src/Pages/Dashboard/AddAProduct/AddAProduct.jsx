@@ -49,7 +49,7 @@ const AddAProduct = () => {
           };
           console.log(product);
           //save Add products to the products collection
-          fetch("http://localhost:5000/categories", {
+          fetch("https://mobile-garage-server-pi.vercel.app/categories", {
             method: "POST",
             headers: {
               "content-type": "application/json",

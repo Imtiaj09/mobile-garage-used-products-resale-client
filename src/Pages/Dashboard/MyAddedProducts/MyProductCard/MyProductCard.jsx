@@ -15,12 +15,15 @@ const MyProductCard = ({ product }) => {
   } = product;
 
   const handleAdvertisement = (_id) => {
-    fetch(`http://localhost:5000/products/${product._id}`, {
-      method: "PUT",
-      headers: {
-        authorization: `bearer ${localStorage.getItem("accessToken")}`,
-      },
-    })
+    fetch(
+      `https://mobile-garage-server-pi.vercel.app/products/${product._id}`,
+      {
+        method: "PUT",
+        headers: {
+          authorization: `bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount > 0) {

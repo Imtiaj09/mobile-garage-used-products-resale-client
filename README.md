@@ -1,70 +1,26 @@
-# Getting Started with Create React App
+# Some Details About EnCode Tutorial website
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+There Are Some Guidelines About My Website
 
-## Available Scripts
+## Clone the git
 
-In the project directory, you can run:
+In the project directory, you can run with:
 
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [Mobile Garage](https://mobile-garage-19557.web.app/) live link to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Note: All the features about EnCode!**
 
-### `npm test`
+1. This is a Products Resale Market website.
+2. This website had been made by using tailwind css.
+3. There are four main options in navigation bar. Home, Blogspot, Dashboard, conditional sign in and sign out section.
+4. There are three category in dashboard. They are Admin , seller and buyers.
+5. In admin he can control three section like user deletion , user admin access, seller account verify.
+6. in seller section , sellers can add any product by category. After adding the new product, it redirect to the my product page. After that he can advertise the product in the advertising section at home page.
+7. When all the product will be added successfully, then the product will be added in the product category section.
+8. In user section there are two options, one is my order another is my wishlist. In order section we can confirm out payment and go to the checkout.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+##adminEmail: imtiaj@gmail.com
+##adminPassword: 123AT#

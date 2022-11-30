@@ -17,7 +17,9 @@ const ProductDetailsCard = ({ product, setBuyProduct }) => {
 
   const [isVerified, setIsVerified] = useState();
   useEffect(() => {
-    fetch(`http://localhost:5000/users/isVerified?email=${author.email}`)
+    fetch(
+      `https://mobile-garage-server-pi.vercel.app/users/isVerified?email=${author.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setIsVerified(data);

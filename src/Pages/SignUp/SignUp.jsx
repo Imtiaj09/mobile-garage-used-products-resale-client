@@ -53,7 +53,7 @@ const SignUp = () => {
 
   const saveUser = (name, email, category) => {
     const user = { name, email, role: category };
-    fetch("http://localhost:5000/users", {
+    fetch("https://mobile-garage-server-pi.vercel.app/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",

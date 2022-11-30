@@ -22,7 +22,7 @@ const BookingModal = ({ buyProduct, setBuyProduct }) => {
       phone,
       location,
     };
-    fetch("http://localhost:5000/bookings", {
+    fetch("https://mobile-garage-server-pi.vercel.app/bookings", {
       method: "POST",
       headers: {
         "content-type": "application/json",

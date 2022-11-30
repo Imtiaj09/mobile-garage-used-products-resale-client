@@ -33,7 +33,9 @@ const router = createBrowserRouter([
         path: "/category/:id",
         element: <Products />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/category/${params.id}`),
+          fetch(
+            `https://mobile-garage-server-pi.vercel.app/category/${params.id}`
+          ),
       },
       {
         path: "/blogs",
@@ -102,7 +104,9 @@ const router = createBrowserRouter([
         path: "/dashboard/payment/:id",
         element: <Payment />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/bookings/${params.id}`),
+          fetch(
+            `https://mobile-garage-server-pi.vercel.app/bookings/${params.id}`
+          ),
       },
       {
         path: "/dashboard/wishlist",

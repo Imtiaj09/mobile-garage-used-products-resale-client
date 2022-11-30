@@ -6,14 +6,16 @@ const Sellers = () => {
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/users?person=seller");
+      const res = await fetch(
+        "https://mobile-garage-server-pi.vercel.app/users?person=seller"
+      );
       const sellers = await res.json();
       return sellers;
     },
   });
 
   const handleVerify = (email) => {
-    fetch(`http://localhost:5000/users/${email}`, {
+    fetch(`https://mobile-garage-server-pi.vercel.app/users/${email}`, {
       method: "PUT",
       headers: {
         authorization: `bearer ${localStorage.getItem("accessToken")}`,
@@ -39,7 +41,7 @@ const Sellers = () => {
       `Are you sure you want to delete the user ${user.name}.`
     );
     if (agree) {
-      fetch(`http://localhost:5000/users/${user._id}`, {
+      fetch(`https://mobile-garage-server-pi.vercel.app/users/${user._id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
