@@ -18,6 +18,20 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
+
+  //For dark and light mood --start
+  const [theme, setTheme] = useState(false);
+
+  useEffect(() => {
+    setTheme(JSON.parse(window.localStorage.getItem("theme") || "false"));
+  }, []);
+
+  const handleThemeChange = () => {
+    setTheme(!theme);
+    window.localStorage.setItem("theme", JSON.stringify(!theme));
+  };
+  //end--
+
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
@@ -51,6 +65,8 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const authInfo = {
+    handleThemeChange,
+    theme,
     createUser,
     signIn,
     updateUser,
