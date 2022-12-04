@@ -31,7 +31,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/category/:id",
-        element: <Products />,
+        element: (
+          <PrivateRoute>
+            <Products />
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(
             `https://mobile-garage-server-pi.vercel.app/category/${params.id}`
